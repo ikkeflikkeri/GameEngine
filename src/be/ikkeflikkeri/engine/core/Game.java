@@ -33,7 +33,7 @@ public abstract class Game
 	private GameObject getRootObject()
 	{
 		if(root == null)
-			root = new GameObject();
+			root = new GameObject("Root");
 		
 		return root;
 	}
