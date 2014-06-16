@@ -136,6 +136,11 @@ public class GameObject
 		return result;
 	}
 	
+	public ArrayList<GameObject> getAllGameObjects()
+	{
+		return findGameObjectByName("Root")[0].getAllAttached();
+	}
+	
 	public Transform getTransform()
 	{
 		return transform;
