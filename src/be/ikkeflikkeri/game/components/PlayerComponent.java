@@ -21,7 +21,6 @@ public class PlayerComponent extends GameComponent
 	}
 	public PlayerComponent(float speed, int forwardKey, int backwardKey, int leftKey, int rightKey)
 	{
-		this.level = new Image("level1.png", false);
 		this.speed = speed;
 		this.forwardKey = forwardKey;
 		this.backwardKey = backwardKey;
@@ -38,6 +37,9 @@ public class PlayerComponent extends GameComponent
 	@Override
 	public void input(float delta)
 	{
+		if(level == null)
+			return;
+		
 		lockLeft = false;
 		lockRight = false;
 		lockForward = false;
@@ -45,7 +47,6 @@ public class PlayerComponent extends GameComponent
 		
 		int x = (int)Math.ceil((getTransform().getPosition().getX() - 1) / 2);
 		int y = (int)Math.ceil((getTransform().getPosition().getZ() - 1) / 2);
-		//System.out.println(x + " " + y + " - " + level.getPixel(x, y));
 		
 		if((level.getPixel(x - 1, y) & 0xFFFFFF) == 0)
 			lockLeft = true;
@@ -113,5 +114,10 @@ public class PlayerComponent extends GameComponent
 			if(getTransform().getPosition().getZ() < zBackward)
 				getTransform().getPosition().setZ(zBackward);
 		}
+	}
+	
+	public void setLevel(Image level)
+	{
+		this.level = level;
 	}
 }

@@ -8,6 +8,7 @@ public class GameManagerComponent extends GameComponent
 {
 	Image level;
 	LevelGeneratorComponent levelGenerator;
+	PlayerComponent player;
 	
 	public GameManagerComponent(String filename)
 	{
@@ -19,14 +20,12 @@ public class GameManagerComponent extends GameComponent
 	{
 		if(Input.isKeyPressed(Input.KEY_F1))
 		{
-			level = new Image("level1.png", false);
-			levelGenerator.generateMesh(level);
+			setLevel("level1.png");
 		}
 		
 		if(Input.isKeyPressed(Input.KEY_F2))
 		{
-			level = new Image("level2.png", false);
-			levelGenerator.generateMesh(level);
+			setLevel("level2.png");
 		}
 	}
 	
@@ -38,11 +37,23 @@ public class GameManagerComponent extends GameComponent
 			levelGenerator = (LevelGeneratorComponent)getParent().findGameObjectByName("LevelGenerator")[0].getComponents(LevelGeneratorComponent.class);
 			levelGenerator.generateMesh(level);
 		}
+		
+		if(player == null)
+		{
+			player = (PlayerComponent)getParent().findGameObjectByName("Player")[0].getComponents(PlayerComponent.class);
+			player.setLevel(level);
+		}
 	}
 	
 	public void setLevel(String filename)
 	{
 		level = new Image(filename, false);
+		
+		if(player != null)
+			player.setLevel(level);
+		
+		if(levelGenerator != null)
+			levelGenerator.generateMesh(level);
 	}
 	
 	public Image getLevel()
