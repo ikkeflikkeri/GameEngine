@@ -1,4 +1,4 @@
-package be.ikkeflikkeri.testgame;
+package be.ikkeflikkeri.devgame;
 
 import be.ikkeflikkeri.engine.core.CoreEngine;
 

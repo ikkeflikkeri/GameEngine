@@ -1,4 +1,4 @@
-package be.ikkeflikkeri.failedgame.components;
+package be.ikkeflikkeri.game.components;
 
 import be.ikkeflikkeri.engine.components.GameComponent;
 import be.ikkeflikkeri.engine.core.Input;
